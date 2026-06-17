@@ -1,0 +1,953 @@
+================================================================================
+                    CITS Programming Language
+                    Complete Tutorial & Reference
+                    Version 1.0.0
+================================================================================
+
+TABLE OF CONTENTS
+-----------------
+1. Introduction
+2. Installation
+3. Running CITS Programs
+4. Basic Syntax
+5. Variables and Data Types
+6. Input and Output
+7. Conditional Statements
+8. Loops
+9. Functions
+10. Flow Control
+11. Operators
+12. Comments
+13. Complete Examples
+14. Error Handling
+15. Tips and Best Practices
+
+================================================================================
+1. INTRODUCTION
+================================================================================
+
+CITS is a simple, BASIC-like programming language designed for learning and 
+educational purposes. It's easy to read and write, making it perfect for 
+beginners who want to understand programming concepts without complex syntax.
+
+Key Features:
+- Simple English-like syntax
+- Variables without type declarations
+- Easy-to-learn control structures
+- Built-in functions
+- Interactive mode for testing
+- Clean error messages
+
+================================================================================
+2. INSTALLATION
+================================================================================
+
+Prerequisites:
+- Python 3.8 or higher installed on your system
+
+Installation Steps:
+
+A) Install from source:
+   1. Navigate to the CITS project directory
+   2. Run: pip install -e .
+
+B) Install from GitHub:
+   pip install git+https://github.com/yourusername/cits.git
+
+C) Verify installation:
+   cits --help
+   or
+   cits (to enter interactive mode)
+
+================================================================================
+3. RUNNING CITS PROGRAMS
+================================================================================
+
+A) Interactive Mode (REPL):
+   Simply type: cits
+   Then enter commands directly:
+
+   > LET x = 10
+   > PRINT x
+   10
+   > exit
+
+B) Running a File:
+   Create a file with .cits extension:
+   cits myprogram.cits
+
+C) Direct Execution (Unix/Linux/Mac):
+   Add this line at the top of your .cits file:
+   #!/usr/bin/env cits
+   Then: chmod +x myprogram.cits
+   Then: ./myprogram.cits
+
+================================================================================
+4. BASIC SYNTAX
+================================================================================
+
+Program Structure:
+------------------
+- Programs consist of numbered lines
+- Line numbers increase by 10 by default (10, 20, 30, ...)
+- Each line contains one statement
+- Statements are executed in order
+- Empty lines are ignored
+- Indentation is optional but recommended for readability
+
+Example:
+   10 LET x = 10
+   20 LET y = 20
+   30 IF x < y THEN
+   40     PRINT "x is smaller"
+   50 ENDIF
+   60 PRINT "Done!"
+
+Line Numbering Rules:
+- Line numbers can be any positive integer
+- Numbers don't have to be consecutive
+- Use larger gaps (10, 20, 30) to allow inserting lines later
+- Lines are executed in numerical order
+
+================================================================================
+5. VARIABLES AND DATA TYPES
+================================================================================
+
+Variables:
+----------
+- Variables store values
+- No type declaration needed
+- Case-sensitive (x and X are different)
+- Can contain letters, numbers, and underscores
+- Must start with a letter
+
+Valid Names:
+   x
+   counter
+   myVar
+   total_1
+   userInput
+
+Invalid Names:
+   1variable (starts with number)
+   my-var (contains hyphen)
+   @test (contains special char)
+
+Data Types:
+-----------
+1. Numbers (integers and floats):
+   LET x = 10      (integer)
+   LET pi = 3.14   (float)
+
+2. Strings (text):
+   LET name = "John"
+   LET message = "Hello, World!"
+
+3. Booleans:
+   LET flag = 1    (true)
+   LET flag = 0    (false)
+
+Declaring Variables:
+--------------------
+Syntax: LET variable = expression
+
+Examples:
+   LET x = 10
+   LET y = x + 5
+   LET name = "Alice"
+   LET full = name + " Smith"
+
+Note: The LET keyword is required in CITS.
+
+================================================================================
+6. INPUT AND OUTPUT
+================================================================================
+
+Output (PRINT):
+---------------
+Syntax: PRINT expression1, expression2, ...
+
+Examples:
+   PRINT "Hello"              → Hello
+   PRINT x                    → 10
+   PRINT "The answer is", x   → The answer is 10
+   PRINT x, "+", y, "=", x+y  → 10 + 20 = 30
+
+Input (INPUT):
+--------------
+Syntax: INPUT prompt, variable
+   or: INPUT variable
+
+Examples:
+   INPUT name                (user types a name)
+   INPUT "Enter age: ", age  (shows prompt before input)
+
+String Input:
+   INPUT "What is your name? ", name
+   PRINT "Hello", name
+
+Number Input:
+   INPUT "Enter a number: ", num
+   PRINT "You entered", num
+
+================================================================================
+7. CONDITIONAL STATEMENTS
+================================================================================
+
+IF Statement:
+-------------
+Syntax:
+   IF condition THEN
+       statements
+   [ELSE
+       statements]
+   ENDIF
+
+Examples:
+
+Simple IF:
+   10 LET x = 10
+   20 IF x > 5 THEN
+   30     PRINT "x is greater than 5"
+   40 ENDIF
+
+IF-ELSE:
+   10 LET x = 3
+   20 IF x > 5 THEN
+   30     PRINT "x is greater than 5"
+   40 ELSE
+   50     PRINT "x is not greater than 5"
+   60 ENDIF
+
+Nested IF:
+   10 LET x = 10
+   20 LET y = 20
+   30 IF x < y THEN
+   40     IF x > 5 THEN
+   50         PRINT "x is between 5 and y"
+   60     ENDIF
+   70 ENDIF
+
+Conditions:
+-----------
+Comparison Operators:
+   =   equal to
+   <>  not equal to
+   <   less than
+   >   greater than
+   <=  less than or equal to
+   >=  greater than or equal to
+
+Logical Operators:
+   AND   both conditions true
+   OR    at least one condition true
+   NOT   reverse the condition
+
+Examples:
+   IF x > 5 AND x < 10 THEN
+   IF x = 0 OR y = 0 THEN
+   IF NOT x = 5 THEN
+
+================================================================================
+8. LOOPS
+================================================================================
+
+FOR Loop:
+---------
+Syntax:
+   FOR variable = start TO end [STEP step]
+       statements
+   NEXT [variable]
+
+Examples:
+
+Basic FOR loop:
+   10 FOR i = 1 TO 5
+   20     PRINT i
+   30 NEXT i
+   Output: 1 2 3 4 5
+
+FOR with STEP:
+   10 FOR i = 1 TO 10 STEP 2
+   20     PRINT i
+   30 NEXT i
+   Output: 1 3 5 7 9
+
+Nested FOR loops:
+   10 FOR i = 1 TO 3
+   20     FOR j = 1 TO 2
+   30         PRINT i, j
+   40     NEXT j
+   50 NEXT i
+
+WHILE Loop:
+-----------
+Syntax:
+   WHILE condition
+       statements
+   WEND
+
+Examples:
+
+Simple WHILE:
+   10 LET x = 1
+   20 WHILE x <= 5
+   30     PRINT x
+   40     LET x = x + 1
+   50 WEND
+   Output: 1 2 3 4 5
+
+WHILE with variable condition:
+   10 LET total = 0
+   20 LET count = 0
+   30 INPUT "Enter number (0 to stop): ", num
+   40 WHILE num <> 0
+   50     LET total = total + num
+   60     LET count = count + 1
+   70     INPUT "Enter number (0 to stop): ", num
+   80 WEND
+   90 PRINT "Sum:", total
+   100 PRINT "Average:", total / count
+
+================================================================================
+9. FUNCTIONS
+================================================================================
+
+Defining Functions:
+-------------------
+Syntax:
+   FUNC name(parameters)
+       statements
+   END
+
+Function Rules:
+- Functions must be defined before use
+- Parameters are optional
+- Can return a value using RETURN
+- Return value can be any type
+
+Examples:
+
+Simple function (no parameters):
+   10 FUNC sayHello()
+   20     PRINT "Hello from function!"
+   30 END
+   40 sayHello()
+   Output: Hello from function!
+
+Function with parameters:
+   10 FUNC add(a, b)
+   20     LET result = a + b
+   30     RETURN result
+   40 END
+   50 LET x = add(5, 3)
+   60 PRINT x
+   Output: 8
+
+Function with RETURN:
+   10 FUNC square(n)
+   20     RETURN n * n
+   30 END
+   40 PRINT square(4)   (prints 16)
+   50 LET x = square(5) (x = 25)
+
+Multiple functions:
+   10 FUNC factorial(n)
+   20     LET result = 1
+   30     FOR i = 1 TO n
+   40         LET result = result * i
+   50     NEXT i
+   60     RETURN result
+   70 END
+   80 FUNC main()
+   90     PRINT factorial(5)   (prints 120)
+   100 END
+   110 main()
+
+================================================================================
+10. FLOW CONTROL
+================================================================================
+
+GOTO Statement:
+---------------
+Syntax: GOTO line_number
+
+Examples:
+   10 LET x = 1
+   20 PRINT x
+   30 LET x = x + 1
+   40 IF x <= 5 THEN
+   50     GOTO 20
+   60 ENDIF
+   70 PRINT "Done!"
+
+END Statement:
+--------------
+Syntax: END
+
+Purpose: Stops program execution immediately
+
+Example:
+   10 PRINT "Starting..."
+   20 IF condition THEN
+   30     END
+   40 ENDIF
+   50 PRINT "This won't run if condition is true"
+
+================================================================================
+11. OPERATORS
+================================================================================
+
+Arithmetic Operators:
+--------------------
++   Addition
+-   Subtraction
+*   Multiplication
+/   Division
+^   Exponentiation (power)
+
+Examples:
+   LET x = 10 + 5      (15)
+   LET y = 20 - 3      (17)
+   LET z = 4 * 5       (20)
+   LET w = 10 / 2      (5)
+   LET p = 2 ^ 3       (8)
+
+Comparison Operators:
+--------------------
+=   Equal to
+<>  Not equal to
+<   Less than
+>   Greater than
+<=  Less than or equal to
+>=  Greater than or equal to
+
+Logical Operators:
+-----------------
+AND     Logical AND
+OR      Logical OR
+NOT     Logical NOT
+
+Examples:
+   IF x > 5 AND x < 10 THEN
+   IF y = 0 OR z = 0 THEN
+   IF NOT x = 5 THEN
+
+Precedence (highest to lowest):
+1. ^ (Power)
+2. *, / (Multiplication, Division)
+3. +, - (Addition, Subtraction)
+4. =, <>, <, >, <=, >= (Comparison)
+5. NOT
+6. AND
+7. OR
+
+================================================================================
+12. COMMENTS
+================================================================================
+
+Comments are ignored by the interpreter and are used to document your code.
+
+Single-line Comments:
+--------------------
+Use REM or // at the beginning of a line:
+
+Examples:
+   10 REM This is a comment
+   20 // Another comment
+   30 LET x = 10  // Inline comment (only at end of line)
+
+Block Comments:
+--------------
+CITS doesn't support block comments. Use multiple REM lines.
+
+Good Commenting Practices:
+------------------------
+1. Explain WHY, not WHAT
+2. Keep comments up-to-date
+3. Use clear, concise language
+4. Comment complex algorithms
+5. Don't over-comment obvious code
+
+================================================================================
+13. COMPLETE EXAMPLES
+================================================================================
+
+Example 1: Calculator Program
+-----------------------------
+   10 REM Simple Calculator
+   20 PRINT "=== Simple Calculator ==="
+   30 PRINT "1. Add"
+   40 PRINT "2. Subtract"
+   50 PRINT "3. Multiply"
+   60 PRINT "4. Divide"
+   70 INPUT "Choose (1-4): ", choice
+   80 INPUT "Enter first number: ", a
+   90 INPUT "Enter second number: ", b
+   100 IF choice = 1 THEN
+   110     PRINT a + b
+   120 ENDIF
+   130 IF choice = 2 THEN
+   140     PRINT a - b
+   150 ENDIF
+   160 IF choice = 3 THEN
+   170     PRINT a * b
+   180 ENDIF
+   190 IF choice = 4 THEN
+   200     IF b <> 0 THEN
+   210         PRINT a / b
+   220     ELSE
+   230         PRINT "Cannot divide by zero"
+   240     ENDIF
+   250 ENDIF
+   260 END
+
+Example 2: Number Guessing Game
+-------------------------------
+   10 REM Number Guessing Game
+   20 LET secret = 42
+   30 LET attempts = 0
+   40 PRINT "Guess the number (1-100)"
+   50 INPUT "Your guess: ", guess
+   60 LET attempts = attempts + 1
+   70 IF guess = secret THEN
+   80     PRINT "Correct!", "You got it in", attempts, "attempts"
+   90     END
+   100 ELSE
+   110     IF guess < secret THEN
+   120         PRINT "Too low!"
+   130     ELSE
+   140         PRINT "Too high!"
+   150     ENDIF
+   160 ENDIF
+   170 GOTO 50
+
+Example 3: Multiplication Table
+-------------------------------
+   10 REM Multiplication Table
+   20 INPUT "Enter a number: ", num
+   30 PRINT "Multiplication Table for", num
+   40 PRINT "========================"
+   50 FOR i = 1 TO 10
+   60     PRINT num, "x", i, "=", num * i
+   70 NEXT i
+   80 END
+
+Example 4: Fibonacci Sequence
+-----------------------------
+   10 REM Fibonacci Sequence
+   20 INPUT "How many Fibonacci numbers? ", n
+   30 LET a = 0
+   40 LET b = 1
+   50 PRINT "Fibonacci Sequence:"
+   60 FOR i = 1 TO n
+   70     PRINT a
+   80     LET temp = a + b
+   90     LET a = b
+   100    LET b = temp
+   110 NEXT i
+   120 END
+
+Example 5: Function to Check Prime Numbers
+------------------------------------------
+   10 FUNC isPrime(n)
+   20     IF n < 2 THEN
+   30         RETURN 0
+   40     ENDIF
+   50     FOR i = 2 TO n - 1
+   60         IF n / i = 0 THEN
+   70             RETURN 0
+   80         ENDIF
+   90     NEXT i
+   100    RETURN 1
+   110 END
+   120 INPUT "Enter a number: ", num
+   130 IF isPrime(num) THEN
+   140     PRINT num, "is prime"
+   150 ELSE
+   160     PRINT num, "is not prime"
+   170 ENDIF
+   180 END
+
+Example 6: Student Grade Calculator
+-----------------------------------
+   10 REM Grade Calculator
+   20 INPUT "Enter student name: ", name
+   30 INPUT "Enter score (0-100): ", score
+   40 IF score >= 90 THEN
+   50     LET grade = "A"
+   60 ELSE
+   70     IF score >= 80 THEN
+   80         LET grade = "B"
+   90     ELSE
+   100        IF score >= 70 THEN
+   110            LET grade = "C"
+   120        ELSE
+   130            IF score >= 60 THEN
+   140                LET grade = "D"
+   150            ELSE
+   160                LET grade = "F"
+   170            ENDIF
+   180        ENDIF
+   190    ENDIF
+   200 ENDIF
+   210 PRINT name, "got grade", grade
+   220 END
+
+Example 7: Menu System
+----------------------
+   10 REM Menu System
+   20 PRINT "=== Main Menu ==="
+   30 PRINT "1. View Data"
+   40 PRINT "2. Enter Data"
+   50 PRINT "3. Exit"
+   60 INPUT "Choose option: ", option
+   70 IF option = 1 THEN
+   80     PRINT "Viewing data..."
+   90     GOTO 20
+   100 ELSE
+   110    IF option = 2 THEN
+   120        INPUT "Enter data: ", data
+   130        GOTO 20
+   140    ELSE
+   150        IF option = 3 THEN
+   160            PRINT "Goodbye!"
+   170            END
+   180        ELSE
+   190            PRINT "Invalid option!"
+   200            GOTO 20
+   210        ENDIF
+   220    ENDIF
+   230 ENDIF
+   240 END
+
+================================================================================
+14. ERROR HANDLING
+================================================================================
+
+Common Errors and Solutions:
+
+1. Syntax Error:
+   "Expected LET, got PRINT"
+   → Check statement spelling and structure
+
+2. Undefined Variable:
+   "Variable 'x' not defined"
+   → Declare variables with LET before use
+
+3. Division by Zero:
+   "Division by zero"
+   → Check for zero before dividing
+
+4. Line Not Found:
+   "Line 100 not found"
+   → Verify line numbers in GOTO statements
+
+5. Unclosed Block:
+   "Unexpected end of input"
+   → Check IF has matching ENDIF
+   → Check FOR has matching NEXT
+   → Check WHILE has matching WEND
+
+Error Message Format:
+   [!] Syntax error: Expected ... at line X
+
+Best Practices to Avoid Errors:
+-------------------------------
+1. Always number lines with gaps (10, 20, 30)
+2. Indent code inside blocks
+3. Use comments to explain complex logic
+4. Test small pieces before building large programs
+5. Keep functions short and focused
+6. Use meaningful variable names
+
+================================================================================
+15. TIPS AND BEST PRACTICES
+================================================================================
+
+Programming Tips:
+-----------------
+1. Plan before you code
+2. Start with simple programs
+3. Test frequently
+4. Use meaningful variable names
+5. Comment your code
+6. Use whitespace for readability
+7. Break large problems into smaller parts
+8. Follow consistent style
+
+Naming Conventions:
+-------------------
+Variables:
+   ✓ Use lowercase with underscores: my_var, total_sum
+   ✓ Be descriptive: student_count, max_score
+   ✗ Avoid single letters (except loops): i, j, k
+   ✗ Avoid abbreviations you'll forget
+
+Functions:
+   ✓ Use descriptive names: calculateTotal, getMax
+   ✓ Use verbs for actions: validate, process, compute
+   ✗ Avoid vague names: do, run, go
+
+Performance Tips:
+-----------------
+1. Use FOR loops instead of WHILE when you know the count
+2. Avoid unnecessary GOTO statements
+3. Don't nest loops too deeply
+4. Reuse function results instead of recalculating
+5. Keep functions small and efficient
+
+Debugging Techniques:
+---------------------
+1. Add PRINT statements to track variables
+2. Comment out sections of code
+3. Test with simple inputs first
+4. Check line numbers for jump errors
+5. Use the LIST command to check program
+
+Interactive Mode Shortcuts:
+--------------------------
+1. RUN         - Execute program
+2. LIST        - Show all lines
+3. NEW         - Clear program
+4. DEL 100     - Delete line 100
+5. exit        - Exit interpreter
+
+================================================================================
+16. QUICK REFERENCE CARD
+================================================================================
+
+STATEMENTS:
+-----------
+LET name = expr          - Assign value to variable
+PRINT expr1, expr2...    - Print values
+INPUT prompt, var        - Get user input
+IF cond THEN             - Start conditional
+ELSE                     - Else branch
+ENDIF                    - End conditional
+FOR var = start TO end   - Start FOR loop
+NEXT                     - End FOR loop
+WHILE cond               - Start WHILE loop
+WEND                     - End WHILE loop
+FUNC name(params)        - Define function
+RETURN expr              - Return from function
+GOTO line                - Jump to line
+END                      - Stop program
+CLS                      - Clear screen
+REM comment              - Comment line
+// comment               - Comment line
+
+OPERATORS:
+----------
++ - * / ^               - Arithmetic
+= <> < > <= >=           - Comparison
+AND OR NOT               - Logical
+
+DATA TYPES:
+-----------
+Number  - 10, 3.14, -5
+String  - "Hello", "123"
+Boolean - 0 (false), 1 (true)
+
+================================================================================
+17. SAMPLE PROJECT: STUDENT MANAGEMENT SYSTEM
+================================================================================
+
+Here's a complete example that demonstrates most features:
+
+   10 REM Student Management System
+   20 REM ============================
+   30 
+   40 REM Initialize data
+   50 LET student_count = 0
+   60 DIM names(100)
+   70 DIM scores(100)
+   80 
+   90 REM Main menu
+   100 FUNC showMenu()
+   110     PRINT ""
+   120     PRINT "=== Student Management System ==="
+   130     PRINT "1. Add Student"
+   140     PRINT "2. List Students"
+   150     PRINT "3. Calculate Class Average"
+   160     PRINT "4. Find Top Student"
+   170     PRINT "5. Exit"
+   180     INPUT "Choose option: ", option
+   190     RETURN option
+   200 END
+   210 
+   220 FUNC addStudent()
+   230     INPUT "Enter student name: ", name
+   240     INPUT "Enter student score (0-100): ", score
+   250     IF score < 0 OR score > 100 THEN
+   260         PRINT "Invalid score!"
+   270         RETURN
+   280     ENDIF
+   290     LET names(student_count) = name
+   300     LET scores(student_count) = score
+   310     LET student_count = student_count + 1
+   320     PRINT "Student added successfully!"
+   330 END
+   340 
+   350 FUNC listStudents()
+   360     IF student_count = 0 THEN
+   370         PRINT "No students enrolled."
+   380         RETURN
+   390     ENDIF
+   400     PRINT ""
+   410     PRINT "Student List:"
+   420     PRINT "--------------"
+   430     FOR i = 0 TO student_count - 1
+   440         PRINT i+1, ". ", names(i), "- Score:", scores(i)
+   450     NEXT i
+   460 END
+   470 
+   480 FUNC calcAverage()
+   490     IF student_count = 0 THEN
+   500         PRINT "No students to calculate."
+   510         RETURN
+   520     ENDIF
+   530     LET total = 0
+   540     FOR i = 0 TO student_count - 1
+   550         LET total = total + scores(i)
+   560     NEXT i
+   570     LET avg = total / student_count
+   580     PRINT "Class Average:", avg
+   590 END
+   600 
+   610 FUNC findTopStudent()
+   620     IF student_count = 0 THEN
+   630         PRINT "No students enrolled."
+   640         RETURN
+   650     ENDIF
+   660     LET top_score = scores(0)
+   670     LET top_name = names(0)
+   680     FOR i = 1 TO student_count - 1
+   690         IF scores(i) > top_score THEN
+   700             LET top_score = scores(i)
+   710             LET top_name = names(i)
+   720         ENDIF
+   730     NEXT i
+   740     PRINT "Top Student:", top_name, "(Score:", top_score, ")"
+   750 END
+   760 
+   770 REM Main program
+   780 WHILE running
+   790     LET choice = showMenu()
+   800     IF choice = 1 THEN
+   810         CALL addStudent()
+   820     ELSE
+   830         IF choice = 2 THEN
+   840             CALL listStudents()
+   850         ELSE
+   860             IF choice = 3 THEN
+   870                 CALL calcAverage()
+   880             ELSE
+   890                 IF choice = 4 THEN
+   900                     CALL findTopStudent()
+   910                 ELSE
+   920                     IF choice = 5 THEN
+   930                         PRINT "Goodbye!"
+   940                         LET running = 0
+   950                     ELSE
+   960                         PRINT "Invalid option!"
+   970                     ENDIF
+   980                 ENDIF
+   990             ENDIF
+   1000        ENDIF
+   1010    ENDIF
+   1020 WEND
+   1030 END
+
+================================================================================
+18. FREQUENTLY ASKED QUESTIONS
+================================================================================
+
+Q: How do I run a CITS file?
+A: Type "cits filename.cits" in the terminal.
+
+Q: Can I use floating point numbers?
+A: Yes, numbers like 3.14 or 2.5 work fine.
+
+Q: How do I handle strings?
+A: Use double quotes: "Hello World"
+
+Q: Can I combine strings and numbers?
+A: Yes, PRINT automatically converts: PRINT "Answer:", 42
+
+Q: How many variables can I have?
+A: No fixed limit in CITS.
+
+Q: Can I have spaces in variable names?
+A: No, use underscores instead: my_variable
+
+Q: What if my program has an infinite loop?
+A: Press Ctrl+C to stop the interpreter.
+
+Q: Can I use external libraries?
+A: No, CITS is standalone.
+
+Q: Is CITS case-sensitive?
+A: Yes, PRINT, print, Print are different.
+
+Q: How do I get help in interactive mode?
+A: Type LIST to see your program.
+
+================================================================================
+19. CONTRIBUTING AND SUPPORT
+================================================================================
+
+Reporting Issues:
+----------------
+If you find a bug or have a suggestion:
+1. Check if it's already reported
+2. Create a new issue with:
+   - Description of the problem
+   - Code that causes the error
+   - Expected vs actual behavior
+
+Feature Requests:
+----------------
+Feature requests are welcome! To request a feature:
+1. Describe the feature clearly
+2. Explain why it would be useful
+3. Provide example usage
+
+Contributing Code:
+-----------------
+If you want to contribute:
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+================================================================================
+20. LICENSE
+================================================================================
+
+CITS is released under the MIT License.
+
+Copyright (c) 2024 Your Name
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+================================================================================
+END OF TUTORIAL
+================================================================================
