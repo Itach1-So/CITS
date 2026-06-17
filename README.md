@@ -6,9 +6,6 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://python.org)
-[![GitHub stars](https://img.shields.io/github/stars/Itach1-so/cits)](https://github.com/Itachi1-so/cits/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/Itach1-so/cits)](https://github.com/Itach1-so/cits/issues)
-[![GitHub forks](https://img.shields.io/github/forks/Itach1-so/cits)](https://github.com/Itach1-so/cits/network)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
 </div>
